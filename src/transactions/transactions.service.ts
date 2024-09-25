@@ -35,13 +35,31 @@ export class TransactionsService {
     const hashArray = Array.from(new Uint8Array(hashBuffer))
     const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
       */
-
+     
+    /*
     const encodedText: Uint8Array = new TextEncoder().encode(secret);
     const hashBuffer: ArrayBuffer = await crypto.subtle.digest("SHA-256", encodedText);
     const hashArray: number[] = Array.from(new Uint8Array(hashBuffer));
-    const hashHex: string = hashArray.map((b: number) => b.toString(16).padStart(2, "0")).join("");
+    const hashHex: string = hashArray.map((b: number) => b.toString(16).padStart(2, "0")).join("");*/
+
+    async function generateHash(secret: string): Promise<string> {
+      // Crear el hash usando el algoritmo SHA-256
+      const hash = createHash('sha256');
+      
+      // Actualizar el hash con el texto a codificar (equivalente a TextEncoder().encode())
+      hash.update(secret);
+    
+      // Obtener el hash en formato hexadecimal (equivalente al proceso de hashArray.map().join())
+      const hashHex = hash.digest('hex');
+    
+      return hashHex;
+    }
+
+    generateHash(secret).then((hashHex) => {
+      createTransactionDto.secretIntegrity=hashHex;
+    });
     createTransactionDto.amount=monto;
-    createTransactionDto.secretIntegrity=hashHex;
+    //createTransactionDto.secretIntegrity=this.hashHex;
     createTransactionDto.dateExpiration=fechaExpiracion;
 
     return await this.trasactionRepository.save(createTransactionDto);
