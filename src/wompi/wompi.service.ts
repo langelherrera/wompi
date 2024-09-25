@@ -13,7 +13,7 @@ import { TransactionsService } from 'src/transactions/transactions.service';
   private private_key:string="prv_stagtest_5i0ZGIGiFcDQifYsXxvsny7Y37tKqFWg";
   private public_key:string="pub_stagtest_g2u0HQd3ZMh05hsSgTS2lUV8t3s4mOt7";
                                           
-  private 
+  
   private host_wompi:string="https://api-sandbox.co.uat.wompi.dev/v1";
   
   async createPaymentMethod(createWompiDto: CreateWompiDto) {

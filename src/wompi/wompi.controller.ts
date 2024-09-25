@@ -48,7 +48,7 @@ export class WompiController {
   }
 
   @Get('acceptance_token')
-  remove() {
+  getAcceptanceToken() {
    
     return this.wompiService.acceptanceToken();
   }
