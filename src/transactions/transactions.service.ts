@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Transaction } from './entities/transaction.entity';
 import { Repository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
+import { createHash } from 'crypto';
 import * as moment from 'moment';
 import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 @Injectable()
